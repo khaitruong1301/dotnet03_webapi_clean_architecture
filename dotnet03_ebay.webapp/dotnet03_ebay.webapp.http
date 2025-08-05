@@ -1,0 +1,6 @@
+@dotnet03_ebay.webapp_HostAddress = http://localhost:5254
+
+GET {{dotnet03_ebay.webapp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

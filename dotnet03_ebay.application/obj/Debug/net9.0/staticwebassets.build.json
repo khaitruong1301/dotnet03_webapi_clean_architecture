@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "G6zOXlnLu73gxuDFU36DgKaRbF3tLpa3kr0pe20PO5A=",
+  "Source": "dotnet03_ebay.application",
+  "BasePath": "_content/dotnet03_ebay.application",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.Infrastructure/dotnet03_ebay.Infrastructure.csproj",
+      "Version": 2,
+      "Source": "dotnet03_ebay.Infrastructure",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

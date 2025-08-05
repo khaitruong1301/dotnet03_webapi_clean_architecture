@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Pi0d1Sfulko=",
+  "success": true,
+  "projectFilePath": "/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/dotnet03_ebay.webapp.csproj",
+  "expectedPackageFiles": [
+    "/Users/khai/.nuget/packages/microsoft.aspnetcore.openapi/9.0.6/microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "/Users/khai/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

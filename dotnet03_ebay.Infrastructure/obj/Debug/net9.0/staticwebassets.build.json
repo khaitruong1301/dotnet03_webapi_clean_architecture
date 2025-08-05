@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "yOaPFSRoT9xDblal2zy59FwIGZVuDym7EyyMUM2cYdI=",
+  "Source": "dotnet03_ebay.Infrastructure",
+  "BasePath": "_content/dotnet03_ebay.Infrastructure",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
