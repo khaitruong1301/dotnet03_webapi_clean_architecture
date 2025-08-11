@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5JWz7whzv8Y=",
+  "dgSpecHash": "jeEynsMAHG0=",
   "success": true,
   "projectFilePath": "/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/dotnet03_ebay.application.csproj",
   "expectedPackageFiles": [
     "/Users/khai/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/khai/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
+    "/Users/khai/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/khai/.nuget/packages/microsoft.aspnetcore.openapi/9.0.6/microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
     "/Users/khai/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/khai/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",

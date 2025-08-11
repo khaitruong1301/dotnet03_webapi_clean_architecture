@@ -7,6 +7,8 @@ public interface IUnitOfWork : IAsyncDisposable
     Task CommitTransactionAsync();
 
     Task<int> SaveChangesAsync();
+    Task<int> SaveChanges();
+
     Task  RollBackTransactionAsync();
 }
 
@@ -15,15 +17,20 @@ public class UnitOfWork: IUnitOfWork
 
     private readonly EbayContext _context;
     
+
     public UnitOfWork(EbayContext context)
     {
         _context = context;
 
     }
     //2 phương thức sử dụng cho LinQ
-    public Task<int> SaveChangesAsync()
+    public async Task<int> SaveChangesAsync()
     {
-        return _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
+    }
+    public async Task<int> SaveChanges()
+    {
+        return  _context.SaveChanges();
     }
     public async ValueTask DisposeAsync()
     {

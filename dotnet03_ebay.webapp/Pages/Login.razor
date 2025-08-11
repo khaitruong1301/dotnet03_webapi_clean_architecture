@@ -1,0 +1,62 @@
+@page "/login"
+@layout HomeMasterPage;
+@*Inject httpclient factory*@
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager NavigationManager
+
+
+<div class="container mt-5 w-50 mx-auto">
+
+    <EditForm Model="loginModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label for="usernameOrEmail">Username or Email</label>
+            <InputText id="usernameOrEmail" class="form-control" @bind-Value="loginModel.UsernameOrEmail" />
+            <ValidationMessage For="@(() => loginModel.UsernameOrEmail)" />
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Login</button>
+    </EditForm>
+</div>
+
+@code {
+    private UserLoginViewModel loginModel = new UserLoginViewModel();
+    private HttpClient _httpClient;
+    protected override void OnInitialized()
+    {
+        _httpClient = HttpClientFactory.CreateClient("EbayAPI");
+    }
+    private async Task HandleValidSubmit()
+    {
+        // Handle login here
+        Console.WriteLine("Login attempt with: " + JsonSerializer.Serialize(loginModel));
+        //Gọi api
+        var response = await _httpClient.PostAsJsonAsync("user/login", loginModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            //Lấy kết quả trả về từ api
+            var result = await response.Content.ReadFromJsonAsync<string>();
+            //Lưu vào token vào localstorage
+            
+
+
+            //Chuyển hướng về trang chủ
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            //Chuyển hướng về trang forgot password
+            NavigationManager.NavigateTo("/forgot-password");
+        }
+
+    }
+}

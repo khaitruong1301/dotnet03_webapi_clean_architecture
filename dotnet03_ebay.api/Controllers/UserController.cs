@@ -26,7 +26,31 @@ namespace dotnet03_ebay.api.Controllers
             var res = await _userService.RegisterBuyer(model);
             return Ok(res);
         }
+        [HttpPost("RegisterSeller")]
+        public async Task<ActionResult> RegisterSeller([FromBody] UserSellerRegister model)
+        {
+            var res = await _userService.RegisterSeller(model);
+            return Ok(res);
+        }
         
+        [HttpPost("Login")]
+        public async Task<ActionResult> Login([FromBody] UserLoginDTO model)
+        {
+            var res = await _userService.Login(model);
+            if(res == MessageLogin.UserNotFound)
+            {
+                return NotFound(res);
+            }
+            else if (res == MessageLogin.PasswordIncorrect)
+            {
+                return Unauthorized(res);
+            }
+            else if (res == MessageLogin.ErrorInServer)
+            {
+                return StatusCode(500, res);
+            }
+            return Ok(res);
+        }
 
     }
 }

@@ -1,0 +1,84 @@
+@page "/register"
+@layout HomeMasterPage;
+@*Add service http client*@
+@inject IHttpClientFactory HttpClientFactory;
+
+<div class="w-50 mx-auto">
+    <h1 class="text-center">Register</h1>
+    <p class="text-center">Create your account to start shopping!</p>
+    <EditForm Model="@registerModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label>User Name:</label>
+            <InputText @bind-Value="registerModel.UserName" class="form-control" />
+            <ValidationMessage For="@(() => registerModel.UserName)" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <InputText @bind-Value="registerModel.Email" class="form-control" />
+            <ValidationMessage For="@(() => registerModel.Email)" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <InputText @bind-Value="registerModel.Password" type="password" class="form-control" />
+            <ValidationMessage For="@(() => registerModel.Password)" />
+        </div>
+        <div>
+            <label>Full Name:</label>
+            <InputText @bind-Value="registerModel.FullName" class="form-control" />
+            <ValidationMessage For="@(() => registerModel.FullName)" />
+        </div>
+        <div class="form-group">
+            <label>User Type:</label>
+            <select @bind="userType" class="form-select">
+                <option value="Buyer">Buyer</option>
+                <option value="Seller">Seller</option>
+            </select>
+            <ValidationMessage For="@(() => userType)" />
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="alert alert-info mt-3" role="alert">
+            @messageAlert
+        </div>
+    </EditForm>
+</div>
+@code {
+
+    HttpClient httpClient;
+    string userType = "Buyer"; // Loại người dùng, có thể là Buyer hoặc Seller
+
+    protected override void OnInitialized()
+    {
+        // Lấy HttpClient từ IHttpClientFactory
+        httpClient = HttpClientFactory.CreateClient("EbayAPI");
+    }
+
+    private RegisterViewModel registerModel = new RegisterViewModel();
+    private string messageAlert ="";
+    private void HandleValidSubmit()
+    {
+        // Handle registration logic here
+        Console.WriteLine($@"{JsonSerializer.Serialize(registerModel)}");
+        //gọi api đăng ký
+        try
+        {
+            string url = userType == "Buyer" ? "User/RegisterBuyer" : "User/RegisterSeller";
+            // Gọi API đăng ký người dùng
+            var response = httpClient.PostAsJsonAsync(url, registerModel).Result;
+            messageAlert = response.IsSuccessStatusCode ? "Registration successful!" : "Registration failed!";
+        }
+        catch (Exception ex)
+        {
+            messageAlert = $"An error occurred: {ex.Message}";
+        }
+        finally
+        {
+            StateHasChanged(); // Cập nhật giao diện sau khi xử lý
+        }
+
+    }
+
+
+}

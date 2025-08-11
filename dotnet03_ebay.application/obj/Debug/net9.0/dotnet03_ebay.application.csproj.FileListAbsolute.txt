@@ -76,3 +76,5 @@
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/obj/Debug/net9.0/dotnet03_ebay.application.pdb
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/obj/Debug/net9.0/dotnet03_ebay.application.genruntimeconfig.cache
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/obj/Debug/net9.0/ref/dotnet03_ebay.application.dll
+/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/obj/Debug/net9.0/dotnet03_ebay.application.sourcelink.json
+/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.application/bin/Debug/net9.0/BCrypt.Net-Next.dll

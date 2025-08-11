@@ -1,41 +1,29 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+//add service blazor 
+//Service của blazor server app
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+
+//Add service http client
+// builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("EbayAPI", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5016/api/"); //địa chỉ api
+});
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); //kích hoạt https
+app.UseRouting(); // để chia các component thành @page ...
+app.UseStaticFiles(); // wwwroot thư mục chưa tài nguyên
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+//Sử dụng middleware của blazor map file host để làm file chạy đầu tiên
+app.MapBlazorHub(); 
+app.MapFallbackToPage("/_Host");
+ 
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

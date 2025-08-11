@@ -152,3 +152,4 @@
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.Infrastructure/obj/Debug/net9.0/dotnet03_ebay.Infrastructure.pdb
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.Infrastructure/obj/Debug/net9.0/dotnet03_ebay.Infrastructure.genruntimeconfig.cache
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.Infrastructure/obj/Debug/net9.0/ref/dotnet03_ebay.Infrastructure.dll
+/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.Infrastructure/obj/Debug/net9.0/dotnet03_ebay.Infrastructure.sourcelink.json

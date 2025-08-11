@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "47jEyCK0UWGujvPH57JqQXrGOmcytioTHs+IeBHHdfo=",
+  "Source": "dotnet03_ebay.webapp",
+  "BasePath": "_content/dotnet03_ebay.webapp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "dotnet03_ebay.webapp/wwwroot",
+      "Source": "dotnet03_ebay.webapp",
+      "ContentRoot": "/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/wwwroot/",
+      "BasePath": "_content/dotnet03_ebay.webapp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}
