@@ -43,10 +43,14 @@ builder.Services.AddScoped<IRoleGroupRepository, RoleGroupRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserGroupRepository, UserGroupRepository>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+builder.Services.AddScoped<IGetListingProductDetailRepository, GetListingProductDetailRepository>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //DI Service
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 
 //Sử dụng map controller 

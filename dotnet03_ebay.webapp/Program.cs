@@ -1,3 +1,5 @@
+using Blazored.LocalStorage;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -12,6 +14,10 @@ builder.Services.AddHttpClient("EbayAPI", client =>
 {
     client.BaseAddress = new Uri("http://localhost:5016/api/"); //địa chỉ api
 });
+//Add service blazor storage
+
+builder.Services.AddBlazoredLocalStorage(); //lưu trữ local
+
 
 
 var app = builder.Build();

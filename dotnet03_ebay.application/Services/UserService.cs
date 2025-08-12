@@ -50,7 +50,7 @@ public class UserService : IUserService
             return MessageLogin.ErrorInServer;
         }
     }
-    
+
     public async Task<bool> RegisterBuyer(UserBuyerRegister model)
     {
         try
@@ -119,3 +119,9 @@ public class UserService : IUserService
         }
     }
 }
+
+
+
+
+
+

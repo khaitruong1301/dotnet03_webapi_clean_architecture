@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotnet03_ebay.webapp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cc149fb92f0848b4c97c04654489b70a51ea23b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf0f54e7beede9b8b211cf80cd16cc9ad1499775")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotnet03_ebay.webapp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotnet03_ebay.webapp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

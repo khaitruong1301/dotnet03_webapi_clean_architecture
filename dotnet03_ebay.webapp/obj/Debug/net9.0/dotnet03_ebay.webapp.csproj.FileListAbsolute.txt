@@ -35,3 +35,4 @@
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/bin/Debug/net9.0/dotnet03_ebay.webapp.staticwebassets.runtime.json
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/obj/Debug/net9.0/dotnet03_ebay.webapp.RazorAssemblyInfo.cache
 /Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/obj/Debug/net9.0/dotnet03_ebay.webapp.RazorAssemblyInfo.cs
+/Volumes/Cybersoft/dotnet03/dotnet03_Ebay/dotnet03_ebay.webapp/bin/Debug/net9.0/Blazored.LocalStorage.dll

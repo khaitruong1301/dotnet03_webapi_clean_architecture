@@ -1,6 +1,8 @@
 @page "/login"
 @layout HomeMasterPage;
 @*Inject httpclient factory*@
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorageService
+
 @inject IHttpClientFactory HttpClientFactory
 @inject NavigationManager NavigationManager
 
@@ -44,9 +46,9 @@
         if (response.IsSuccessStatusCode)
         {
             //Lấy kết quả trả về từ api
-            var result = await response.Content.ReadFromJsonAsync<string>();
+            var result = await response.Content.ReadAsStringAsync();
             //Lưu vào token vào localstorage
-            
+            await LocalStorageService.SetItemAsync("token", result);
 
 
             //Chuyển hướng về trang chủ
