@@ -52,6 +52,12 @@ public class ProductService : IProductService
             CategoryName = n.CategoryName,
             UserId = n.UserId,
             FullName = n.FullName,
+            Description = n.Description,
+            Avatar = n.Avatar,
+            Address = n.Address,
+            Phone = n.Phone,
+            Deleted = n.Deleted,
+            CreatedAt = n.CreatedAt.Value,
             ListImageDetail =  JsonSerializer.Deserialize<IEnumerable<ProductImageDTO>>(n.ListImageDetail)
         });
         return data;

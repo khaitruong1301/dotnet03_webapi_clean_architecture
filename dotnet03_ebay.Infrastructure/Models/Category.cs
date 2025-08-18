@@ -16,6 +16,4 @@ public partial class Category
     public bool? Deleted { get; set; }
 
     public virtual ICollection<Listing> Listings { get; set; } = new List<Listing>();
-
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

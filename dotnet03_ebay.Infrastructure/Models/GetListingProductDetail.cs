@@ -5,9 +5,21 @@ namespace dotnet03_ebay.Infrastructure.Models;
 
 public partial class GetListingProductDetail
 {
+    public DateTime? CreatedAt { get; set; }
+
+    public bool? Deleted { get; set; }
+
     public int Id { get; set; }
 
     public int ProductId { get; set; }
+
+    public string Avatar { get; set; } = null!;
+
+    public string? Address { get; set; }
+
+    public string? Description { get; set; }
+
+    public string? Status { get; set; }
 
     public int CategoryId { get; set; }
 
@@ -24,6 +36,8 @@ public partial class GetListingProductDetail
     public string? FullName { get; set; }
 
     public string Email { get; set; } = null!;
+
+    public string? Phone { get; set; }
 
     public int? GroupListing { get; set; }
 

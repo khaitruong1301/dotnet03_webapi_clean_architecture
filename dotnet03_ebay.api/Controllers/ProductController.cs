@@ -37,14 +37,19 @@ namespace dotnet03_ebay.api.Controllers
 
         [HttpGet("GetProductListingByCategoryId/{categoryId}")]
         [OutputCache(Duration = 300, VaryByRouteValueNames = new[] { "categoryId" })]
-        public async Task<IActionResult> GetProductListingByCategoryId(int categoryId)
+        public async Task<IActionResult> GetProductListingByCategoryId(int categoryId,int page = 1, int pageSize = 10 ) //page: số trang, pageSize: số lượng sản phẩm trên mỗi trang
         {
+            
+            //Lấy danh sách sản phẩm theo categoryId
             var res = await _productService.GetProductListingByCategoryId(categoryId);
             if (res.Count() == 0)
             {
                 return NotFound(new HTTPResponseValue<string>(MessageResponse.NotFound, MessageResponse.NotFound, StatusResponse.NotFound));
             }
-            return Ok(new HTTPResponseValue<IEnumerable<ProductListingDetailDTO>>(res, MessageResponse.Success, StatusResponse.Success));
+            //Phân trang
+            var pagedData = res.Skip((page - 1) * pageSize).Take(pageSize);
+
+            return Ok(new HTTPResponseValue<IEnumerable<ProductListingDetailDTO>>(pagedData, MessageResponse.Success, StatusResponse.Success));
         }
     }
 }

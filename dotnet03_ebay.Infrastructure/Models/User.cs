@@ -19,6 +19,10 @@ public partial class User
 
     public bool? Deleted { get; set; }
 
+    public string? Address { get; set; }
+
+    public string? Phone { get; set; }
+
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
     public virtual ICollection<Listing> Listings { get; set; } = new List<Listing>();
@@ -26,8 +30,6 @@ public partial class User
     public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
     public virtual ICollection<Rating> RatingRatedUsers { get; set; } = new List<Rating>();
 

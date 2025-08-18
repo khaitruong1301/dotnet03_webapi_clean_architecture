@@ -1,0 +1,128 @@
+@page "/category/{cateId:int?}"
+@layout HomeMasterPage
+@*inject service factory*@
+@inject IHttpClientFactory HttpClientFactory;
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Tất cả
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="#">Cá nhân</a></li>
+                        <li><a class="dropdown-item" href="#">Bán chuyên</a></li>
+                    </ul>
+                </div>
+                <div class="d-flex gap-2">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown">
+                            Tin mới nhất
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tin mới nhất</a></li>
+                            <li><a class="dropdown-item" href="#">Giá thấp đến cao</a></li>
+                            <li><a class="dropdown-item" href="#">Giá cao đến thấp</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-outline-secondary"><i class="bi bi-grid"></i></button>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                @if (_productsListing != null)
+                {
+                    foreach (ProductListingVM prod in _productsListing)
+                    {
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="@prod.ListImageDetail[0]?.ImageUrl" class="img-fluid rounded-start" alt="@prod.Name">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@prod.Name</h5>
+                                            @{
+                                                string price = prod.CurrentPrice != null ? prod.CurrentPrice.ToString() + "$" : "Liên hệ";
+                                            }
+                                            <p class="card-text text-danger fs-5">@price</p>
+                                             <p class="card-text"><small class="text-muted">Đã sử dụng</small></p>
+                                            <p class="card-text"><i class="bi bi-geo-alt"></i>@prod.Address</p>
+                                            <p class="card-text"><i class="bi bi-geo-alt"></i> </p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <img src="@prod.Avatar" class="rounded-ci rcle" width="32" height="32">
+                                                    <span>@prod.FullName</span>
+                                                </div>
+                                                @{
+                                                    var timeDiff = DateTime.Now - prod.CreatedAt;
+                                                    string timeAgo = timeDiff.Days > 0 ? $"{timeDiff.Days} ngày trước" : 
+                                                                    timeDiff.Hours > 0 ? $"{timeDiff.Hours} giờ trước" :
+                                                                    timeDiff.Minutes > 0 ? $"{timeDiff.Minutes} phút trước" : "Vừa xong";
+                                                }
+
+
+                                                <p class="card-text"><small class="text-muted">@timeAgo</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- Product Card 1 -->
+                }
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int? cateId { get; set; }
+    private HttpClient? _httpClient;
+    @*Sử dụng lifecycle page change*@
+    private IEnumerable<ProductListingVM> _productsListing;
+    protected override async Task OnParametersSetAsync() //Mỗi khi parameter thay đổi hàm này sẽ được gọi
+    {
+        _httpClient = HttpClientFactory.CreateClient("EbayAPI");
+        try
+        {
+            // Fetch category data based on CategoryId
+            var response = await _httpClient.GetAsync(@$"Product/GetProductListingByCategoryId/{cateId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadFromJsonAsync<HTTPResponseVM<ProductListingVM[]>>();
+                if (res != null)
+                {
+                    _productsListing = res.Content;
+                    Console.WriteLine($@"{JsonSerializer.Serialize(res.Content)}");
+                }
+            }
+            else
+            {
+                // Handle error response
+                Console.WriteLine($"Error fetching category data: {response.ReasonPhrase}");
+            }
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine($"Exception occurred while fetching category data: {err.Message}");
+        }
+
+    }
+
+    [Parameter]
+    public int CategoryId { get; set; }
+}

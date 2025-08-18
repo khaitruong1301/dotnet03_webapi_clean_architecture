@@ -179,12 +179,19 @@ public partial class EbayContext : DbContext
                 .HasNoKey()
                 .ToView("GetListingProductDetail");
 
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.Avatar)
+                .HasMaxLength(128)
+                .HasColumnName("avatar");
             entity.Property(e => e.CategoryName).HasMaxLength(100);
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.CurrentPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.Phone).HasMaxLength(255);
             entity.Property(e => e.StartingPrice).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Status).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Group>(entity =>
@@ -384,24 +391,12 @@ public partial class EbayContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Products__3214EC0757FB8E89");
 
-            entity.HasIndex(e => e.SellerId, "IX_Products_SellerId");
-
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Deleted).HasDefaultValue(false);
             entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
-
-            entity.HasOne(d => d.Category).WithMany(p => p.Products)
-                .HasForeignKey(d => d.CategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Products__Catego__44FF419A");
-
-            entity.HasOne(d => d.Seller).WithMany(p => p.Products)
-                .HasForeignKey(d => d.SellerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Products__Seller__440B1D61");
         });
 
         modelBuilder.Entity<ProductImage>(entity =>
@@ -561,6 +556,7 @@ public partial class EbayContext : DbContext
 
             entity.HasIndex(e => e.Email, "UQ__Users__A9D105347DE540EE").IsUnique();
 
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -568,6 +564,7 @@ public partial class EbayContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
+            entity.Property(e => e.Phone).HasMaxLength(255);
             entity.Property(e => e.Username).HasMaxLength(50);
         });
 
